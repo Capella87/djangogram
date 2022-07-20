@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Djangogram</title>
+</head>
+<body>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+
+    {% bootstrap_messages %}
+    {% if form.errors %}
+        <p>유저네임 및 비밀번호가 일치하지 않습니다.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>당신의 계정으로는 이 페이지에 접근할 수 없습니다. 접근하려면 권한이 있는 계정으로 로그인하십시오.</p>
+        {% else %}
+            <p>이 콘텐츠를 보려면 로그인해야 합니다.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{% bootstrap_label form.username.label_tag %}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{% bootstrap_label form.password.label_tag %}</td>
+                <td>{% bootstrap_field form.password %}</td>
+            </tr>
+        </table>
+        <input type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <p><a href="{% url 'password_reset' %}">비번 찾기</a></p>
+{% endblock %}
+<footer>
+    <h6>Copyright (c) 2022 Capella87 and his teammates.<br>
+    This website is NOT affiliated to neither Instagram nor Django.</h6>
+</footer>
+</body>
+</html>
