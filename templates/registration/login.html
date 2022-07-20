@@ -55,7 +55,11 @@
             </div>
         </form>
     {% endblock %}
-    <span style="padding-top: 0.9em;"><a href="{% url 'password_reset' %}">비밀번호 찾기</a></span>
+
+    <div class="d-flex justify-content-between">
+        <div style="padding: 0.9em;"><a href="{% url 'password_reset' %}">비밀번호 찾기</a></div>
+        <div style="padding: 0.9em;"><a href="">회원가입</a></div>
+    </div>
     </main>
 
     <footer class="sticky-xl-bottom py-3 bg-light">
