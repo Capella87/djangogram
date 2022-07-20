@@ -20,7 +20,7 @@
 
 {% block content %}
 
-    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <main class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
         {% bootstrap_messages %}
         {% bootstrap_label "Djangogram 로그인" label_class='loginTitle' %}
         {% if form.errors %}
@@ -55,12 +55,13 @@
             </div>
         </form>
     {% endblock %}
-    <p><a href="{% url 'password_reset' %}">비번 찾기</a></p>
-    <footer class="d-flex justify-content-center align-items-between">
-        <h6>Copyright (c) 2022 Capella87 and his teammates.<br>
-            This website is NOT affiliated to neither Instagram nor Django.</h6>
+    <span style="padding-top: 0.9em;"><a href="{% url 'password_reset' %}">비밀번호 찾기</a></span>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <h6>Copyright (c) 2022 <a href="https://github.com/Capella87">Capella87</a> and his teammates.<br>
+            This website is NOT affiliated to both Instagram and Django.</h6>
     </footer>
-    </div>
 
     {# Assumes you setup the password_reset view in your URLconf #}
 </body>
