@@ -59,4 +59,7 @@ python manage.py runserver
 ## 기능
 
 ---
-Copyright (c) 2022 Capella87 and his teammates.
+Copyright (c) 2022 Capella87, LeeDayday, Maddy, seong-hui and ssongmim.
+
+This project is NOT affiliated to both Instagram and Django.<br>
+이 프로젝트는 인스타그램과 장고와는 관련이 없습니다.
