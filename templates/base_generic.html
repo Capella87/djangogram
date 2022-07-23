@@ -5,6 +5,11 @@
         <title>Djangogram</title>
         {% endblock %}
         <meta charset="utf-8">
+        {% block base_style %}
+            <style>
+            .
+            </style>
+        {% endblock %}
         {% block style %}{% endblock %}
     </head>
 
@@ -14,6 +19,33 @@
     {% bootstrap_javascript %}
     <body>
     {% block navbar %}
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand" style="font-weight: bold;"><a class="navbar-link" href="{% url 'index' %}">Djangogram</a></span>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="menus">
+                        Home
+                    </li>
+                    <li class="menus">
+                        DM
+                    </li>
+                    <li class="menus">
+                        Write
+                    </li>
+                    <li class="menus">
+                        Explore
+                    </li>
+                    <li class="menus">
+                        Login / Logout
+                    </li>
+                </ul>
+            </div>
+            <div id="cent" class="collapse navbar-collapse">
+
+            </div>
+        </nav>
     {% endblock %}
     {% block content %}
     {% endblock %}
