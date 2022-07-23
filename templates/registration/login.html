@@ -1,7 +1,11 @@
+{% extends "base_generic.html" %}
 <!DOCTYPE html>
 <html>
 <head>
+    {% block title %}
     <title>Login Djangogram</title>
+    {% endblock %}
+    {% block style %}
     <style>
         .loginTitle
         {
@@ -12,14 +16,13 @@
             padding-bottom: 2em;
         }
     </style>
+    {% endblock %}
 </head>
 <body>
-{% load bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{% block content %}
-
+    {% block content %}
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
     <main class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
         {% bootstrap_messages %}
         {% bootstrap_label "Djangogram 로그인" label_class='loginTitle' %}
@@ -54,21 +57,13 @@
                 <input type="hidden" name="next" value="{{ next }}">
             </div>
         </form>
-    {% endblock %}
 
     <div class="d-flex justify-content-between">
         <div style="padding: 0.9em;"><a href="{% url 'password_reset' %}">비밀번호 찾기</a></div>
         <div style="padding: 0.9em;"><a href="">회원가입</a></div>
     </div>
     </main>
-
-    <footer class="sticky-xl-bottom mt-auto py-3 bg-light">
-        <h6>Copyright (c) 2022 <a href="https://github.com/Capella87">Capella87</a>, <a href="https://github.com/LeeDayday">LeeDayday</a>,
-            <a href="https://github.com/Maddy">Maddy</a>, <a href="https://github.com/seung-hui">seong-hui</a> and
-            <a href="https://github.com/ssongmin">ssongmim</a>.<br>
-            This website is NOT affiliated to both Instagram and Django.</h6>
-    </footer>
-
+    {% endblock %}
     {# Assumes you setup the password_reset view in your URLconf #}
 </body>
 </html>

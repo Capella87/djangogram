@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block style %}
+    <style>
+    .testfield
+    {
+        font-size: 2em;
+        font-weight: bold;
+        font-style: normal;
+        font-family: -apple-system-headline, BlinkMacSystemFont, Arial, Roboto, sans-serif;
+        padding-bottom: 2em;
+    }
+    </style>
+{% endblock %}
+
+{%  block content %}
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <header>
+    {% bootstrap_label "Djangogram" label_class="testfield" %}
+    </header>
+{% endblock %}
