@@ -7,7 +7,10 @@
         <meta charset="utf-8">
         {% block base_style %}
             <style>
-            .
+            a
+            {
+                text-decoration: none !important;
+            }
             </style>
         {% endblock %}
         {% block style %}{% endblock %}
@@ -22,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
             <div class="container-fluid">
                 <span class="navbar-brand" style="font-weight: bold;">
-                    <a class="navbar-link" href="{% url 'index' %}">Djangogram</a></span>
+                    <a class="navbar-link" href="{% url 'index' %}" style="font-size: 1.5em; color: #005bbb;">Djangogram</a></span>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
