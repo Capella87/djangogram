@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Logout Djangogram</title>
+{% endblock %}
+
+{% block accout %}
+    {% if user.is_authenticated %}
+        <li class="menus">
+            <a href="{% url 'logout' %}?next={{ '/feed/' }}">Sign Out</a>
+        </li>
+    {% else %}
+        <li class="menus">
+            <a href="{% url 'login' %}?next={{ '/feed/' }}">Sign In</a>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <main class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <p>You logged out Djangogram.</p>
+    </main>
+{% endblock %}

@@ -41,9 +41,17 @@
                     <li class="menus">
                         Explore
                     </li>
-                    <li class="menus">
-                        Login / Logout
-                    </li>
+                {% block account %}
+                    {% if user.is_authenticated %}
+                        <li class="menus">
+                            <a href="{% url 'logout' %}?next={{ request.path }}">Sign Out</a>
+                        </li>
+                    {% else %}
+                        <li class="menus">
+                            <a href="{% url 'login' %}?next={{ request.path }}">Sign In</a>
+                        </li>
+                    {% endif %}
+                {% endblock %}
                 </ul>
             </div>
             <div id="cent" class="collapse navbar-collapse">
