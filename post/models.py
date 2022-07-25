@@ -22,3 +22,6 @@ class Mentions(models.Model):
 
 class Pictures(models.Model):
     post_id = models.ForeignKey(Post.id, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Post.id, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(default=now, editable=False)
+    path = models.CharField(max_length=256)
