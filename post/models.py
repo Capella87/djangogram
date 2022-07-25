@@ -25,3 +25,11 @@ class Pictures(models.Model):
     user_id = models.ForeignKey(Post.id, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=now, editable=False)
     path = models.CharField(max_length=256)
+
+class Comments(models.Model):
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post_id = models.ForeignKey(Post.id, on_delete=models.CASCADE)
+    text = models.CharField(max_length=140)
+    created_date = models.DateTimeField(default=now, editable=False)
+    modified_date = models.DateTimeField(auto_now=True)
+    mention_id = models.ForeignKey(Mentions.id, on_delete=models.CASCADE)
