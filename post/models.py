@@ -61,9 +61,9 @@ class Hashtags_usage(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
 
 class Comments(models.Model):
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    post_id = models.ForeignKey(Post.id, on_delete=models.CASCADE)
-    text = models.CharField(max_length=140)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+    text = models.TextField(null=False)
     created_date = models.DateTimeField(default=now, editable=False)
     modified_date = models.DateTimeField(auto_now=True)
-    mention_id = models.ForeignKey(Mentions.id, on_delete=models.CASCADE)
+    mention = models.ForeignKey(Mentions, on_delete=models.SET_NULL, related_name='+', null=True)
