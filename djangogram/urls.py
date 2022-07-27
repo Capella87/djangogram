@@ -23,6 +23,7 @@ urlpatterns = [
     # it need to be changed.
     path('feed/', include('feed.urls')),
     path('', RedirectView.as_view(url='feed/', permanent=True)),
+    path('', include('user.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_URL)

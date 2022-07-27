@@ -1,13 +1,11 @@
 from django.db import models
 from django.conf import settings
 from django.utils.timezone import now
+from user.models import Profile
 
 # Create your models here.
+# Djangogram model
 
-class Profile(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
-    birthday = models.DateField()
-    gender = models.IntegerField()
 
 class Location(models.Model):
     name = models.CharField(max_length=100)
@@ -17,15 +15,18 @@ class Location(models.Model):
     class Meta:
         db_table = 'Location'
 
+
 class Posts(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
     location = models.ForeignKey(Location, on_delete=models.RESTRICT, default=None, related_name='+')
     created_date = models.DateTimeField(default=now, editable=False)
     is_private = models.BooleanField(default=False)
     text = models.TextField()
+    is_allow_comment = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'Posts'
+
 
 class Mentions(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
@@ -34,6 +35,7 @@ class Mentions(models.Model):
 
     class Meta:
         db_table = 'Mentions'
+
 
 class Pictures(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
@@ -44,6 +46,7 @@ class Pictures(models.Model):
     class Meta:
         db_table = 'Pictures'
 
+
 class Videos(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
@@ -53,12 +56,15 @@ class Videos(models.Model):
     class Meta:
         db_table = 'Videos'
 
+
 class Hashtags(models.Model):
     name = models.CharField(max_length=256)
+
 
 class Hashtags_usage(models.Model):
     hashtag = models.ForeignKey(Hashtags, on_delete=models.RESTRICT, related_name='+')
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+
 
 class Comments(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
