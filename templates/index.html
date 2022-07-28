@@ -10,6 +10,98 @@
         font-family: -apple-system-headline, BlinkMacSystemFont, Arial, Roboto, sans-serif;
         padding-bottom: 2em;
     }
+    .main-body {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+        background-color: #FAFAFA;
+    }
+
+    .left-body {
+        margin-right: 100px;
+        width: 500px;
+        height: 2000px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right-body {
+        width: 380px;
+        height: 1000px;
+        left: 65%;
+        margin: 0 16px 30px 0;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+    }
+    .feed-box {
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        width: 470px;
+        margin: 10px;
+        height: 740px;
+        display: flex;
+        flex-direction: column;
+    }
+    .feed-profile {
+        padding: 7px;
+        width: 100%;
+        height: 56px;
+    }
+    .feed-profile-txt {
+        font-weight: bold;
+    }
+    .feed-profile-img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: fill;
+        margin-right: 10px;
+    }
+    .feed-img {
+        border-top: #EFEFEF 1px solid;
+        width: 450px;
+        height: 450px;
+        object-fit: contain;
+    }
+    .feed-bottom {
+        padding: 0px 16px;
+    }
+    .feed-icons{
+        padding: 5px 5px 0px 5px;
+        display: flex;
+        justify-content: space-between;
+    }span{
+         padding-right: 5px;
+    }
+    .feed-txt {
+        padding: 5px 0px;
+    }
+    .feed-comment {
+        border-top: #EFEFEF 1px solid;
+    }
+    .link_txt{
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .recommend-box {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        align-items: center;
+    }
+    .comment_box{
+        margin: 40px 0 0 5px;
+        font-size: 12px;
+        font-weight: bold;
+        color: lightgray;
+        display: flex;
+        flex-direction: column;
+    }
     </style>
 {% endblock %}
 
@@ -22,4 +114,90 @@
     <header>
     {% bootstrap_label "Djangogram" label_class="testfield" %}
     </header>
+    <div class="main-body">
+       <div class="left-body">
+            <div class="border feed-box">
+                <div class="feed-profile">
+                    <img class="feed-profile-img" src="http://unsplash.it/600/600?image=180" >
+                    <span class="feed-profile-txt">abcdefg</span>
+                </div>
+                <img class="feed-img" src="data:image/png;base64,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">
+                <div class="feed-bottom">
+                    <div class="feed-icons">
+                        <div>
+                          <span class="material-symbols-outlined">favorite</span>
+                          <span class="material-symbols-outlined">chat_bubble</span>
+                          <span class="material-symbols-outlined">send</span>
+                        </div>
+                        <div>
+                          <span class="material-symbols-outlined">bookmark</span>
+                        </div>
+                    </div>
+                    <div class="feed-like feed-txt">
+                        <span> 좋아요 ㅁㅁㅁ 개</span>
+                    </div>
+
+                    <div class="feed-content feed-txt">
+                        <span class="feed-profile-txt">abcdefg</span>
+                        <p class="feed-txt">
+                            장고장고
+                        </p>
+                        <span class="feed-txt">댓글 ㅁㅁㅁ개 모두 보기</span>
+                        <br>
+                        <span class="feed-txt">20시간 전</span>
+                    </div>
+
+                </div>
+                <div class="feed-comment input-group mb-3">
+                  <input type="text" class="form-control" placeholder="댓글 달기..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">게시</button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="border feed-box">
+                컨텐츠 2
+            </div>
+        </div>
+        <div class="right-body">
+            <div class="feed-profile" style="display: flex; justify-content: space-between; align-items: center">
+                <div>
+                    <img class="feed-profile-img" src="http://unsplash.it/600/600?image=180" style="width: 56px; height: 56px;">
+                    <span class="feed-profile-txt">abcdefg</span>
+                </div>
+                <div>
+                    <a class="link_txt" >전환</a>
+                </div>
+            </div>
+
+           <div class="recommend-box">
+              <span style="color: gray"> 회원님을 위한 추천</span>
+              <span style="font-size: 12px"> 모두 보기 </span>
+            </div>
+
+           <div>
+              <div class="feed-profile" style="justify-content: space-between">
+                <div class="profile_box" style="display:flex; justify-content: space-around">
+                    <img class="feed-profile-img"
+                       src="https://i.pinimg.com/736x/93/a6/8b/93a68b57a54e4bdc73d43d1d049b94b3.jpg">
+                    <div class="name_content">
+                        <span class="feed-profile-txt">instagram</span>
+                        <span class="name_content_txt">instargram 신규가입  </span>
+                    </div>
+                    <a class="link_txt">
+                      팔로우
+                    </a>
+                  </div>
+                </div>
+
+           </div>
+
+            <div class="comment_box">
+                <br>
+                <span> @통장장고 </span>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
