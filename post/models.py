@@ -73,3 +73,9 @@ class Comments(models.Model):
     created_date = models.DateTimeField(default=now, editable=False)
     modified_date = models.DateTimeField(auto_now=True)
     mention = models.ForeignKey(Mentions, on_delete=models.SET_NULL, related_name='+', null=True)
+
+
+class Collections(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+
