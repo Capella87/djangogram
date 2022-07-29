@@ -1,8 +1,10 @@
 from django.db import models
 from django.conf import settings
 from django.utils.timezone import now
+from user.models import Profile
 
 # Create your models here.
+# Djangogram model
 
 
 class Location(models.Model):
@@ -15,51 +17,65 @@ class Location(models.Model):
 
 
 class Posts(models.Model):
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
-    location_id = models.ForeignKey(Location, on_delete=models.RESTRICT, default=None, related_name='+')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
+    location = models.ForeignKey(Location, on_delete=models.RESTRICT, default=None, related_name='+')
     created_date = models.DateTimeField(default=now, editable=False)
     is_private = models.BooleanField(default=False)
     text = models.TextField()
+    is_allow_comment = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'Posts'
 
+
 class Mentions(models.Model):
-    post_id = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
-    mentioner_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
-    mentionee_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+    mentioner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
+    mentionee = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
 
     class Meta:
         db_table = 'Mentions'
 
+
 class Pictures(models.Model):
-    post_id = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
     created_date = models.DateTimeField(default=now, editable=False)
     path = models.CharField(max_length=256)
 
     class Meta:
         db_table = 'Pictures'
 
+
 class Videos(models.Model):
-    post_id = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
     created_date = models.DateTimeField(default=now, editable=False)
     path = models.CharField(max_length=256)
 
     class Meta:
         db_table = 'Videos'
 
+
 class Hashtags(models.Model):
     name = models.CharField(max_length=256)
 
+
 class Hashtags_usage(models.Model):
-    hashtag_id = models.ForeignKey(Hashtags, on_delete=models.RESTRICT, related_name='+')
-    post_id = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+    hashtag = models.ForeignKey(Hashtags, on_delete=models.RESTRICT, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+
+
 class Comments(models.Model):
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    post_id = models.ForeignKey(Post.id, on_delete=models.CASCADE)
-    text = models.CharField(max_length=140)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+    text = models.TextField(null=False)
     created_date = models.DateTimeField(default=now, editable=False)
     modified_date = models.DateTimeField(auto_now=True)
-    mention_id = models.ForeignKey(Mentions.id, on_delete=models.CASCADE)
+    mention = models.ForeignKey(Mentions, on_delete=models.SET_NULL, related_name='+', null=True)
+
+
+class Collections(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='+')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='+')
+
